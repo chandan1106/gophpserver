@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technical Documentation - GoPHPServer</title>
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #34495e;
+            --code-bg: #2d2d2d;
+            --code-color: #f8f8f2;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1.5rem 0;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        nav {
+            background-color: var(--secondary-color);
+            padding: 1rem 0;
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin: 0 15px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--accent-color);
+        }
+        
+        .content {
+            display: flex;
+            padding: 0;
+        }
+        
+        .sidebar {
+            width: 250px;
+            background-color: var(--light-color);
+            padding: 2rem 0;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+        }
+        
+        .sidebar ul {
+            list-style: none;
+        }
+        
+        .sidebar ul li {
+            padding: 0.5rem 1rem;
+        }
+        
+        .sidebar ul li a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            display: block;
+            padding: 0.5rem;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        .sidebar ul li a:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+        
+        .sidebar ul li ul {
+            margin-left: 1rem;
+        }
+        
+        .main-content {
+            flex: 1;
+            padding: 2rem;
+        }
+        
+        .main-content h2 {
+            color: var(--secondary-color);
+            margin: 2rem 0 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #ddd;
+        }
+        
+        .main-content h2:first-of-type {
+            border-top: none;
+            padding-top: 0;
+            margin-top: 0;
+        }
+        
+        .main-content h3 {
+            color: var(--primary-color);
+            margin: 1.5rem 0 0.5rem;
+        }
+        
+        .main-content p {
+            margin-bottom: 1rem;
+        }
+        
+        .main-content ul, .main-content ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .main-content li {
+            margin-bottom: 0.5rem;
+        }
+        
+        pre {
+            background-color: var(--code-bg);
+            color: var(--code-color);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: rgba(0, 0, 0, 0.05);
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+        }
+        
+        pre code {
+            background-color: transparent;
+            padding: 0;
+        }
+        
+        .diagram {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border: 1px solid #ddd;
+            overflow-x: auto;
+            font-family: 'Courier New', Courier, monospace;
+            white-space: pre;
+        }
+        
+        footer {
+            background-color: var(--secondary-color);
+            color: white;
+            text-align: center;
+            padding: 1.5rem 0;
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: static;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>GoPHPServer - Technical Documentation</h1>
+        </div>
+    </header>
+    
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="quick-start.html">Quick Start</a></li>
+                <li><a href="user-guide.html">User Guide</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="technical.html">Technical Docs</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <div class="content">
+        <div class="sidebar">
+            <ul>
+                <li><a href="#architecture">Architecture Overview</a></li>
+                <li><a href="#components">Core Components</a>
+                    <ul>
+                        <li><a href="#http-server">HTTP Server</a></li>
+                        <li><a href="#request-router">Request Router</a></li>
+                        <li><a href="#php-handler">PHP Handler</a></li>
+                        <li><a href="#static-file-server">Static File Server</a></li>
+                    </ul>
+                </li>
+                <li><a href="#request-flow">Request Handling Flow</a></li>
+                <li><a href="#php-execution">PHP Execution Process</a></li>
+                <li><a href="#security">Security Features</a></li>
+                <li><a href="#performance">Performance Considerations</a></li>
+                <li><a href="#extension">Extension Points</a></li>
+                <li><a href="#implementation">Implementation Details</a></li>
+            </ul>
+        </div>
+        
+        <div class="main-content">
+            <h2 id="architecture">Architecture Overview</h2>
+            <p>GoPHPServer is a lightweight web server written in Go that serves both static files and PHP scripts. It uses Go's standard library <code>net/http</code> package for HTTP handling and executes PHP scripts by invoking the PHP interpreter directly.</p>
+            
+            <h3>High-Level Architecture</h3>
+            <div class="diagram">
+┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐
+│                 │     │                 │     │                 │
+│  HTTP Request   │────▶│  Go HTTP Server │────▶│  Request Router │
+│                 │     │                 │     │                 │
+└─────────────────┘     └─────────────────┘     └────────┬────────┘
+                                                         │
+                                                         ▼
+                        ┌─────────────────┐     ┌─────────────────┐
+                        │                 │     │                 │
+                        │   PHP Script    │◀────│  File Handler   │
+                        │   Execution     │     │                 │
+                        │                 │     └────────┬────────┘
+                        └─────────────────┘              │
+                                                         │
+                                                         ▼
+                                               ┌─────────────────┐
+                                               │                 │
+                                               │  Static File    │
+                                               │    Serving      │
+                                               │                 │
+                                               └─────────────────┘
+            </div>
+            
+            <h2 id="components">Core Components</h2>
+            
+            <h3 id="http-server">1. HTTP Server</h3>
+            <p>The HTTP server is built using Go's <code>net/http</code> package. It handles incoming HTTP requests, manages connections, and routes requests to the appropriate handler.</p>
+            
+            <pre><code>server := &http.Server{
+    Addr:         fmt.Sprintf("%s:%d", config.Host, config.Port),
+    Handler:      createHandler(config),
+    ReadTimeout:  time.Duration(config.Server.ReadTimeout) * time.Second,
+    WriteTimeout: time.Duration(config.Server.WriteTimeout) * time.Second,
+    IdleTimeout:  time.Duration(config.Server.IdleTimeout) * time.Second,
+}</code></pre>
+            
+            <h3 id="request-router">2. Request Router</h3>
+            <p>The request router determines how to handle each incoming request based on the requested path and file type.</p>
+            
+            <pre><code>func createHandler(config Config) http.Handler {
+    return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+        // Add security headers
+        // Determine file path
+        // Check if file exists
+        // Handle PHP files or serve static files
+    })
+}</code></pre>
+            
+            <h3 id="php-handler">3. PHP Handler</h3>
+            <p>The PHP handler executes PHP scripts by invoking the PHP interpreter with the appropriate environment variables.</p>
+            
+            <pre><code>func handlePHP(w http.ResponseWriter, r *http.Request, path string, config Config) {
+    // Execute PHP directly
+    cmd := exec.Command(config.PHPPath, path)
+    
+    // Set environment variables for PHP
+    // Execute PHP and get output
+    // Write the response
+}</code></pre>
+            
+            <h3 id="static-file-server">4. Static File Server</h3>
+            <p>Static files are served using Go's built-in <code>http.ServeFile</code> function.</p>
+            
+            <pre><code>// Serve static files
+http.ServeFile(w, r, path)</code></pre>
+            
+            <h2 id="request-flow">Request Handling Flow</h2>
+            <p>The request handling flow in GoPHPServer follows these steps:</p>
+            <ol>
+                <li><strong>Request Reception</strong>: The HTTP server receives an incoming request.</li>
+                <li><strong>Path Resolution</strong>: The server determines the file path based on the request URL.</li>
+                <li><strong>File Type Detection</strong>: The server checks if the requested file is a PHP script or a static file.</li>
+                <li><strong>Processing</strong>:
+                    <ul>
+                        <li>For PHP files: The server executes the PHP interpreter with the script.</li>
+                        <li>For static files: The server serves the file directly.</li>
+                    </ul>
+                </li>
+                <li><strong>Response</strong>: The server sends the response back to the client.</li>
+            </ol>
+            
+            <h3>Detailed Flow Diagram</h3>
+            <div class="diagram">
+┌─────────────┐     ┌─────────────┐     ┌─────────────┐     ┌─────────────┐
+│  Receive    │     │  Resolve    │     │  Check if   │     │ File Exists?│
+│  HTTP       │────▶│  File       │────▶│  Path is    │────▶│  Yes/No     │
+│  Request    │     │  Path       │     │  Directory  │     │             │
+└─────────────┘     └─────────────┘     └─────────────┘     └──────┬──────┘
+                                                                   │
+                                                                   ▼
+┌─────────────┐     ┌─────────────┐     ┌─────────────┐     ┌─────────────┐
+│  Send       │     │  Process    │     │  Determine  │     │  No: Return │
+│  Response   │◀────│  File       │◀────│  File       │◀────│  404 Error  │
+│  to Client  │     │  Content    │     │  Type       │     │             │
+└─────────────┘     └─────────────┘     └─────────────┘     └─────────────┘
+            </div>
+            
+            <h2 id="php-execution">PHP Execution Process</h2>
+            <p>GoPHPServer executes PHP scripts by invoking the PHP interpreter directly with the script file. This approach is different from traditional PHP-FPM setups but provides a simpler architecture.</p>
+            
+            <h3>Environment Variables</h3>
+            <p>The following environment variables are set for PHP scripts:</p>
+            <ul>
+                <li><code>REQUEST_METHOD</code>: The HTTP method used (GET, POST, etc.)</li>
+                <li><code>QUERY_STRING</code>: The query string from the URL</li>
+                <li><code>REQUEST_URI</code>: The full request URI</li>
+                <li><code>DOCUMENT_ROOT</code>: The document root directory</li>
+                <li><code>SCRIPT_FILENAME</code>: The full path to the PHP script</li>
+                <li><code>SERVER_SOFTWARE</code>: "GoPHPServer/1.0"</li>
+                <li><code>REMOTE_ADDR</code>: The client's IP address</li>
+                <li>HTTP headers (prefixed with <code>HTTP_</code>)</li>
+            </ul>
+            
+            <h3>Execution Steps</h3>
+            <ol>
+                <li>Create a command to execute the PHP interpreter with the script file.</li>
+                <li>Set up environment variables to simulate a web server environment.</li>
+                <li>Execute the command and capture the output.</li>
+                <li>Send the output back to the client as the HTTP response.</li>
+            </ol>
+            
+            <pre><code>cmd := exec.Command(config.PHPPath, path)
+cmd.Env = append(os.Environ(), environmentVariables...)
+output, err := cmd.Output()
+w.Write(output)</code></pre>
+            
+            <h2 id="security">Security Features</h2>
+            <p>GoPHPServer includes several security features to help protect your applications:</p>
+            
+            <h3>1. Security Headers</h3>
+            <p>The server adds the following security headers to all responses:</p>
+            <ul>
+                <li><code>X-Content-Type-Options: nosniff</code>: Prevents MIME type sniffing.</li>
+                <li><code>X-Frame-Options: SAMEORIGIN</code>: Prevents clickjacking by restricting framing.</li>
+                <li><code>Content-Security-Policy: default-src 'self' 'unsafe-inline'</code>: Restricts resource loading.</li>
+            </ul>
+            
+            <h3>2. Path Traversal Prevention</h3>
+            <p>The server uses Go's <code>filepath.Join</code> function to safely join paths, which prevents directory traversal attacks.</p>
+            
+            <pre><code>path := filepath.Join(config.DocRoot, r.URL.Path[1:])</code></pre>
+            
+            <h3>3. Error Handling</h3>
+            <p>The server includes proper error handling to prevent information leakage and ensure stability.</p>
+            
+            <h2 id="performance">Performance Considerations</h2>
+            
+            <h3>1. Static File Serving</h3>
+            <p>Static files are served directly using Go's efficient file serving capabilities, which include:</p>
+            <ul>
+                <li>Automatic content type detection</li>
+                <li>Range request support</li>
+                <li>Conditional GET support</li>
+            </ul>
+            
+            <h3>2. PHP Execution</h3>
+            <p>PHP scripts are executed on demand, which is efficient for low to medium traffic sites. For high-traffic sites, consider:</p>
+            <ul>
+                <li>Increasing the number of worker processes</li>
+                <li>Using a reverse proxy like Nginx for caching</li>
+                <li>Implementing application-level caching in your PHP code</li>
+            </ul>
+            
+            <h3>3. Memory Usage</h3>
+            <p>GoPHPServer has a small memory footprint since it doesn't maintain persistent PHP processes. Each PHP script execution creates a new process, which is efficient for low to medium traffic but may become a bottleneck for high-traffic sites.</p>
+            
+            <h2 id="extension">Extension Points</h2>
+            <p>GoPHPServer can be extended in several ways:</p>
+            
+            <h3>1. Custom Middleware</h3>
+            <p>You can add custom middleware to the HTTP server to implement features like:</p>
+            <ul>
+                <li>Authentication</li>
+                <li>Rate limiting</li>
+                <li>Request logging</li>
+                <li>Response compression</li>
+            </ul>
+            
+            <h3>2. Alternative PHP Execution Methods</h3>
+            <p>The PHP execution mechanism can be modified to use different approaches:</p>
+            <ul>
+                <li>PHP-FPM via FastCGI</li>
+                <li>PHP embedded in Go using CGO</li>
+                <li>Alternative PHP implementations</li>
+            </ul>
+            
+            <h3>3. Configuration Options</h3>
+            <p>Additional configuration options can be added to customize the server's behavior:</p>
+            <ul>
+                <li>TLS/HTTPS support</li>
+                <li>Virtual hosts</li>
+                <li>URL rewriting</li>
+                <li>Custom error pages</li>
+            </ul>
+            
+            <h2 id="implementation">Implementation Details</h2>
+            
+            <h3>Main Components</h3>
+            <ol>
+                <li><strong>Configuration</strong>: Handles command-line flags and configuration options.</li>
+                <li><strong>HTTP Server</strong>: Manages HTTP connections and request handling.</li>
+                <li><strong>File Handler</strong>: Determines how to process different file types.</li>
+                <li><strong>PHP Executor</strong>: Executes PHP scripts and captures output.</li>
+            </ol>
+            
+            <h3>Key Functions</h3>
+            <ul>
+                <li><code>main()</code>: Entry point that initializes the server.</li>
+                <li><code>createHandler()</code>: Creates the HTTP request handler.</li>
+                <li><code>handlePHP()</code>: Handles PHP script execution.</li>
+            </ul>
+            
+            <h3>Error Handling</h3>
+            <p>GoPHPServer uses Go's error handling patterns to manage errors:</p>
+            <ul>
+                <li>File not found errors return 404 responses</li>
+                <li>PHP execution errors return 500 responses</li>
+                <li>Server startup errors are logged and cause the server to exit</li>
+            </ul>
+            
+            <h2>Conclusion</h2>
+            <p>GoPHPServer provides a simple but effective way to serve PHP applications without the complexity of traditional web server setups. Its architecture is designed for simplicity and ease of use, making it ideal for development environments and small to medium production sites.</p>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 GoPHPServer. Released under the MIT License.</p>
+        </div>
+    </footer>
+</body>
+</html>
