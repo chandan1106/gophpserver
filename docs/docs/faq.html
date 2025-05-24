@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - GoPHPServer</title>
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #34495e;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1.5rem 0;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        nav {
+            background-color: var(--secondary-color);
+            padding: 1rem 0;
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin: 0 15px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--accent-color);
+        }
+        
+        .content {
+            padding: 2rem 0;
+        }
+        
+        .content h2 {
+            color: var(--secondary-color);
+            margin: 2rem 0 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #ddd;
+        }
+        
+        .content h2:first-of-type {
+            border-top: none;
+            padding-top: 0;
+        }
+        
+        .content h3 {
+            color: var(--primary-color);
+            margin: 1.5rem 0 0.5rem;
+        }
+        
+        .content p {
+            margin-bottom: 1rem;
+        }
+        
+        .content ul, .content ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .content li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .code-block {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+        }
+        
+        footer {
+            background-color: var(--secondary-color);
+            color: white;
+            text-align: center;
+            padding: 1.5rem 0;
+            margin-top: 2rem;
+        }
+        
+        .faq-item {
+            margin-bottom: 2rem;
+        }
+        
+        .faq-question {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .faq-answer {
+            padding-left: 1rem;
+            border-left: 3px solid var(--light-color);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>GoPHPServer - Frequently Asked Questions</h1>
+        </div>
+    </header>
+    
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="quick-start.html">Quick Start</a></li>
+                <li><a href="user-guide.html">User Guide</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <div class="content">
+        <div class="container">
+            <h2>General Questions</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">What is GoPHPServer?</div>
+                <div class="faq-answer">
+                    <p>GoPHPServer is a lightweight web server written in Go that can serve both static files and PHP scripts. It's designed to be a simpler alternative to the Nginx + PHP-FPM stack, with minimal configuration required.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Why use GoPHPServer instead of Apache or Nginx?</div>
+                <div class="faq-answer">
+                    <p>GoPHPServer is much simpler to set up and use, especially for development environments or small projects. It's a single binary with no complex configuration files, making it ideal for quick PHP development or testing.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">What are the system requirements?</div>
+                <div class="faq-answer">
+                    <ul>
+                        <li>Any operating system that Go supports (Windows, macOS, Linux)</li>
+                        <li>PHP installed on the system (for executing PHP scripts)</li>
+                        <li>Minimal memory and CPU requirements</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <h2>Installation Questions</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">Do I need to install Go to use GoPHPServer?</div>
+                <div class="faq-answer">
+                    <p>No, you can download the pre-built binary for your platform from the releases page. You only need Go installed if you want to build from source.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">How do I update to a newer version?</div>
+                <div class="faq-answer">
+                    <p>Simply download the latest binary and replace your existing one. Your configuration and website files will not be affected.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Can I install GoPHPServer globally on my system?</div>
+                <div class="faq-answer">
+                    <p>Yes, you can move the binary to a directory in your PATH, such as <code>/usr/local/bin</code> on Linux/macOS or add it to your PATH on Windows.</p>
+                </div>
+            </div>
+            
+            <h2>Configuration Questions</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">How do I change the port?</div>
+                <div class="faq-answer">
+                    <p>Use the <code>-port</code> flag:</p>
+                    <div class="code-block">
+                        ./gophpserver -port 8000
+                    </div>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Can I serve multiple websites?</div>
+                <div class="faq-answer">
+                    <p>Currently, GoPHPServer serves a single document root. To serve multiple websites, you would need to run multiple instances on different ports.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Does GoPHPServer support HTTPS?</div>
+                <div class="faq-answer">
+                    <p>Not directly in the current version. For HTTPS support, you can use a reverse proxy like Nginx or a service like Cloudflare.</p>
+                </div>
+            </div>
+            
+            <h2>PHP Questions</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">Which PHP versions are supported?</div>
+                <div class="faq-answer">
+                    <p>GoPHPServer should work with any modern PHP version (5.6 and above).</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">How does GoPHPServer execute PHP scripts?</div>
+                <div class="faq-answer">
+                    <p>GoPHPServer executes PHP scripts by running the PHP interpreter directly with the script file. It sets up the appropriate environment variables to simulate a standard web server environment.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Can I use PHP frameworks like Laravel or WordPress?</div>
+                <div class="faq-answer">
+                    <p>Yes, but some advanced frameworks might require additional configuration. Simple frameworks and CMS systems should work out of the box.</p>
+                </div>
+            </div>
+            
+            <h2>Performance Questions</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">How does GoPHPServer perform compared to Nginx + PHP-FPM?</div>
+                <div class="faq-answer">
+                    <p>GoPHPServer is designed for simplicity rather than maximum performance. For most small to medium websites, the performance difference will be negligible. For high-traffic production sites, Nginx + PHP-FPM might offer better performance and more advanced features.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Is GoPHPServer suitable for production use?</div>
+                <div class="faq-answer">
+                    <p>GoPHPServer can be used in production for small to medium websites with moderate traffic. For high-traffic sites, consider using it behind a more robust web server like Nginx.</p>
+                </div>
+            </div>
+            
+            <h2>Troubleshooting Questions</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">PHP scripts are being downloaded instead of executed</div>
+                <div class="faq-answer">
+                    <p>Make sure PHP is installed and in your PATH, or specify the path to PHP using the <code>-php</code> flag.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">I'm getting "permission denied" errors</div>
+                <div class="faq-answer">
+                    <p>Make sure the GoPHPServer binary is executable and that it has permission to read your website files.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">How do I report a bug?</div>
+                <div class="faq-answer">
+                    <p>Please open an issue on the GitHub repository with detailed information about the bug, including your operating system, PHP version, and steps to reproduce the issue.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 GoPHPServer. Released under the MIT License.</p>
+        </div>
+    </footer>
+</body>
+</html>

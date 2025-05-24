@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quick Start Guide - GoPHPServer</title>
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #34495e;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1.5rem 0;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        nav {
+            background-color: var(--secondary-color);
+            padding: 1rem 0;
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin: 0 15px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--accent-color);
+        }
+        
+        .content {
+            padding: 2rem 0;
+        }
+        
+        .content h2 {
+            color: var(--secondary-color);
+            margin: 1.5rem 0 1rem;
+        }
+        
+        .content h3 {
+            color: var(--primary-color);
+            margin: 1.5rem 0 0.5rem;
+        }
+        
+        .content p {
+            margin-bottom: 1rem;
+        }
+        
+        .content ul, .content ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .content li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .code-block {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+        }
+        
+        footer {
+            background-color: var(--secondary-color);
+            color: white;
+            text-align: center;
+            padding: 1.5rem 0;
+            margin-top: 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            margin-top: 1rem;
+        }
+        
+        .btn:hover {
+            background-color: #c0392b;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>GoPHPServer - Quick Start Guide</h1>
+        </div>
+    </header>
+    
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="quick-start.html">Quick Start</a></li>
+                <li><a href="user-guide.html">User Guide</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <div class="content">
+        <div class="container">
+            <h2>Getting Started with GoPHPServer</h2>
+            <p>This guide will help you get up and running with GoPHPServer in just a few minutes.</p>
+            
+            <h3>Installation</h3>
+            <h4>Option 1: Download Pre-built Binary</h4>
+            <ol>
+                <li>Download the binary for your platform from the <a href="https://github.com/yourusername/gophpserver/releases" target="_blank">releases page</a>.</li>
+                <li>Extract the archive and make the binary executable (if on Linux/macOS).</li>
+            </ol>
+            
+            <div class="code-block">
+                # For Linux/macOS<br>
+                tar -xzf gophpserver-1.0.0-linux-amd64.tar.gz<br>
+                chmod +x gophpserver<br><br>
+                # For Windows<br>
+                # Just extract the zip file
+            </div>
+            
+            <h4>Option 2: Build from Source</h4>
+            <ol>
+                <li>Clone the repository:</li>
+            </ol>
+            
+            <div class="code-block">
+                git clone https://github.com/yourusername/gophpserver.git<br>
+                cd gophpserver
+            </div>
+            
+            <ol start="2">
+                <li>Build the server:</li>
+            </ol>
+            
+            <div class="code-block">
+                make build
+            </div>
+            
+            <h3>Running the Server</h3>
+            <p>Start the server using the run script or directly:</p>
+            
+            <div class="code-block">
+                # Using the run script<br>
+                ./run.sh<br><br>
+                # Or directly<br>
+                ./build/gophpserver
+            </div>
+            
+            <h3>Creating Your First PHP Website</h3>
+            <ol>
+                <li>Create a directory for your website files:</li>
+            </ol>
+            
+            <div class="code-block">
+                mkdir -p public
+            </div>
+            
+            <ol start="2">
+                <li>Create a simple PHP file:</li>
+            </ol>
+            
+            <div class="code-block">
+                echo '&lt;?php echo "&lt;h1&gt;Hello from GoPHPServer!&lt;/h1&gt;"; ?&gt;' > public/index.php
+            </div>
+            
+            <ol start="3">
+                <li>Start the server:</li>
+            </ol>
+            
+            <div class="code-block">
+                ./run.sh
+            </div>
+            
+            <ol start="4">
+                <li>Open your browser and navigate to:</li>
+            </ol>
+            
+            <div class="code-block">
+                http://localhost:8080/
+            </div>
+            
+            <h3>Basic Configuration</h3>
+            <p>You can configure GoPHPServer using command-line flags:</p>
+            
+            <div class="code-block">
+                # Change the port<br>
+                ./run.sh -port 8000<br><br>
+                # Use a different document root<br>
+                ./run.sh -docroot /path/to/your/website
+            </div>
+            
+            <h3>Next Steps</h3>
+            <p>Now that you have GoPHPServer up and running, you can:</p>
+            <ul>
+                <li>Read the <a href="user-guide.html">User Guide</a> for detailed information</li>
+                <li>Check out the <a href="faq.html">FAQ</a> for answers to common questions</li>
+                <li>Explore the example applications in the repository</li>
+            </ul>
+            
+            <a href="user-guide.html" class="btn">Continue to User Guide</a>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 GoPHPServer. Released under the MIT License.</p>
+        </div>
+    </footer>
+</body>
+</html>

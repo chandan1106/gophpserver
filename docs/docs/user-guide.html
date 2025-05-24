@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Guide - GoPHPServer</title>
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #34495e;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1.5rem 0;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        nav {
+            background-color: var(--secondary-color);
+            padding: 1rem 0;
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin: 0 15px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--accent-color);
+        }
+        
+        .content {
+            padding: 2rem 0;
+        }
+        
+        .content h2 {
+            color: var(--secondary-color);
+            margin: 1.5rem 0 1rem;
+            padding-top: 1rem;
+        }
+        
+        .content h3 {
+            color: var(--primary-color);
+            margin: 1.5rem 0 0.5rem;
+        }
+        
+        .content p {
+            margin-bottom: 1rem;
+        }
+        
+        .content ul, .content ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .content li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .code-block {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+        }
+        
+        footer {
+            background-color: var(--secondary-color);
+            color: white;
+            text-align: center;
+            padding: 1.5rem 0;
+            margin-top: 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            margin-top: 1rem;
+        }
+        
+        .btn:hover {
+            background-color: #c0392b;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+        
+        table th, table td {
+            padding: 0.75rem;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        
+        table th {
+            background-color: var(--light-color);
+            font-weight: bold;
+        }
+        
+        table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        
+        .toc {
+            background-color: var(--light-color);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+        
+        .toc h3 {
+            margin-top: 0;
+        }
+        
+        .toc ul {
+            list-style-type: none;
+            margin-left: 0;
+        }
+        
+        .toc ul ul {
+            margin-left: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>GoPHPServer - User Guide</h1>
+        </div>
+    </header>
+    
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="quick-start.html">Quick Start</a></li>
+                <li><a href="user-guide.html">User Guide</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <div class="content">
+        <div class="container">
+            <div class="toc">
+                <h3>Table of Contents</h3>
+                <ul>
+                    <li><a href="#overview">1. Overview</a></li>
+                    <li><a href="#installation">2. Installation</a></li>
+                    <li><a href="#basic-usage">3. Basic Usage</a></li>
+                    <li><a href="#configuration">4. Configuration Options</a></li>
+                    <li><a href="#directory-structure">5. Directory Structure</a></li>
+                    <li><a href="#php-support">6. PHP Support</a></li>
+                    <li><a href="#docker">7. Docker Deployment</a></li>
+                    <li><a href="#troubleshooting">8. Troubleshooting</a></li>
+                </ul>
+            </div>
+            
+            <h2 id="overview">1. Overview</h2>
+            <p>GoPHPServer is a lightweight web server written in Go that can serve both static files and PHP scripts. It's designed to be a simpler alternative to the Nginx + PHP-FPM stack, with minimal configuration required.</p>
+            
+            <h2 id="installation">2. Installation</h2>
+            <h3>Prerequisites</h3>
+            <ul>
+                <li>Go 1.16 or higher (for building from source)</li>
+                <li>PHP (for executing PHP scripts)</li>
+            </ul>
+            
+            <h3>Method 1: Using Pre-built Binaries</h3>
+            <ol>
+                <li>Download the pre-built binary for your platform from the <a href="https://github.com/yourusername/gophpserver/releases" target="_blank">releases page</a>.</li>
+                <li>Extract the archive:
+                    <div class="code-block">
+                        # For Linux/macOS<br>
+                        tar -xzf gophpserver-1.0.0-linux-amd64.tar.gz<br><br>
+                        # For Windows<br>
+                        # Extract the zip file
+                    </div>
+                </li>
+                <li>Make the binary executable (Linux/macOS only):
+                    <div class="code-block">
+                        chmod +x gophpserver
+                    </div>
+                </li>
+            </ol>
+            
+            <h3>Method 2: Building from Source</h3>
+            <ol>
+                <li>Clone the repository:
+                    <div class="code-block">
+                        git clone https://github.com/yourusername/gophpserver.git<br>
+                        cd gophpserver
+                    </div>
+                </li>
+                <li>Build the server:
+                    <div class="code-block">
+                        make build
+                    </div>
+                </li>
+                <li>The binary will be available in the <code>build</code> directory.</li>
+            </ol>
+            
+            <h2 id="basic-usage">3. Basic Usage</h2>
+            <h3>Starting the Server</h3>
+            <div class="code-block">
+                # Using the run script<br>
+                ./run.sh<br><br>
+                # Or directly<br>
+                ./build/gophpserver
+            </div>
+            
+            <h3>Accessing Your Website</h3>
+            <p>Open your web browser and navigate to:</p>
+            <div class="code-block">
+                http://localhost:8080/
+            </div>
+            
+            <h3>Stopping the Server</h3>
+            <p>Press <code>Ctrl+C</code> in the terminal where the server is running, or use:</p>
+            <div class="code-block">
+                pkill -f gophpserver
+            </div>
+            
+            <h2 id="configuration">4. Configuration Options</h2>
+            <p>GoPHPServer can be configured using command-line flags:</p>
+            
+            <table>
+                <tr>
+                    <th>Flag</th>
+                    <th>Description</th>
+                    <th>Default</th>
+                </tr>
+                <tr>
+                    <td><code>-host</code></td>
+                    <td>Host to listen on</td>
+                    <td>"0.0.0.0"</td>
+                </tr>
+                <tr>
+                    <td><code>-port</code></td>
+                    <td>Port to listen on</td>
+                    <td>8080</td>
+                </tr>
+                <tr>
+                    <td><code>-docroot</code></td>
+                    <td>Document root directory</td>
+                    <td>"./public"</td>
+                </tr>
+                <tr>
+                    <td><code>-php</code></td>
+                    <td>Path to PHP binary</td>
+                    <td>auto-detect</td>
+                </tr>
+                <tr>
+                    <td><code>-log</code></td>
+                    <td>Log file path</td>
+                    <td>stdout</td>
+                </tr>
+            </table>
+            
+            <h3>Examples</h3>
+            <div class="code-block">
+                # Change the port<br>
+                ./build/gophpserver -port 8000<br><br>
+                # Specify a different document root<br>
+                ./build/gophpserver -docroot /var/www/html<br><br>
+                # Specify a PHP binary path<br>
+                ./build/gophpserver -php /usr/bin/php<br><br>
+                # Log to a file<br>
+                ./build/gophpserver -log ./logs/server.log
+            </div>
+            
+            <h2 id="directory-structure">5. Directory Structure</h2>
+            <p>The recommended directory structure for your web application is:</p>
+            <div class="code-block">
+                /your-app/<br>
+                ├── gophpserver      # Server binary<br>
+                └── public/          # Document root<br>
+                    ├── index.php    # Default PHP page<br>
+                    ├── index.html   # Default HTML page (fallback)<br>
+                    └── ...          # Other web files
+            </div>
+            
+            <h2 id="php-support">6. PHP Support</h2>
+            <p>GoPHPServer executes PHP scripts using the PHP interpreter installed on your system. It passes the appropriate environment variables to PHP to simulate a standard web server environment.</p>
+            
+            <h3>Requirements</h3>
+            <ul>
+                <li>PHP must be installed and available in your PATH</li>
+                <li>PHP scripts must have the <code>.php</code> extension</li>
+            </ul>
+            
+            <h3>PHP Environment Variables</h3>
+            <p>The following environment variables are set for PHP scripts:</p>
+            <ul>
+                <li><code>REQUEST_METHOD</code>: The HTTP method used (GET, POST, etc.)</li>
+                <li><code>QUERY_STRING</code>: The query string from the URL</li>
+                <li><code>REQUEST_URI</code>: The full request URI</li>
+                <li><code>DOCUMENT_ROOT</code>: The document root directory</li>
+                <li><code>SCRIPT_FILENAME</code>: The full path to the PHP script</li>
+                <li><code>SERVER_SOFTWARE</code>: "GoPHPServer/1.0"</li>
+                <li><code>REMOTE_ADDR</code>: The client's IP address</li>
+                <li>HTTP headers (prefixed with <code>HTTP_</code>)</li>
+            </ul>
+            
+            <h2 id="docker">7. Docker Deployment</h2>
+            <h3>Using Docker Compose</h3>
+            <ol>
+                <li>Make sure Docker and Docker Compose are installed on your system.</li>
+                <li>Start the server:
+                    <div class="code-block">
+                        docker-compose up -d
+                    </div>
+                </li>
+                <li>Stop the server:
+                    <div class="code-block">
+                        docker-compose down
+                    </div>
+                </li>
+            </ol>
+            
+            <h3>Using Docker Directly</h3>
+            <ol>
+                <li>Build the Docker image:
+                    <div class="code-block">
+                        docker build -t gophpserver .
+                    </div>
+                </li>
+                <li>Run the container:
+                    <div class="code-block">
+                        docker run -d -p 8080:8080 -v $(pwd)/public:/app/public --name gophpserver gophpserver
+                    </div>
+                </li>
+                <li>Stop the container:
+                    <div class="code-block">
+                        docker stop gophpserver
+                    </div>
+                </li>
+            </ol>
+            
+            <h2 id="troubleshooting">8. Troubleshooting</h2>
+            <h3>Common Issues</h3>
+            
+            <h4>"PHP not found" error</h4>
+            <p><strong>Problem</strong>: The server cannot find the PHP interpreter.</p>
+            <p><strong>Solution</strong>:</p>
+            <ol>
+                <li>Make sure PHP is installed:
+                    <div class="code-block">
+                        php --version
+                    </div>
+                </li>
+                <li>If PHP is installed but not in the PATH, specify the path explicitly:
+                    <div class="code-block">
+                        ./build/gophpserver -php /path/to/php
+                    </div>
+                </li>
+            </ol>
+            
+            <h4>"Address already in use" error</h4>
+            <p><strong>Problem</strong>: The port is already in use by another process.</p>
+            <p><strong>Solution</strong>:</p>
+            <ol>
+                <li>Use a different port:
+                    <div class="code-block">
+                        ./build/gophpserver -port 8081
+                    </div>
+                </li>
+                <li>Or stop the process using the current port:
+                    <div class="code-block">
+                        pkill -f gophpserver
+                    </div>
+                </li>
+            </ol>
+            
+            <h4>PHP scripts not executing</h4>
+            <p><strong>Problem</strong>: PHP scripts are being downloaded instead of executed.</p>
+            <p><strong>Solution</strong>:</p>
+            <ol>
+                <li>Make sure the file has a <code>.php</code> extension</li>
+                <li>Check that PHP is installed and working:
+                    <div class="code-block">
+                        php -r "echo 'PHP is working';"
+                    </div>
+                </li>
+            </ol>
+            
+            <h3>Getting Help</h3>
+            <p>If you encounter issues not covered in this guide, please:</p>
+            <ol>
+                <li>Check the <a href="https://github.com/yourusername/gophpserver/issues" target="_blank">GitHub issues</a> for similar problems</li>
+                <li>Open a new issue with detailed information about your problem</li>
+            </ol>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 GoPHPServer. Released under the MIT License.</p>
+        </div>
+    </footer>
+</body>
+</html>

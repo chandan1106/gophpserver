@@ -2,7 +2,14 @@
 
 A lightweight, high-performance web server written in Go that can serve both static files and PHP scripts. This server is designed to be a simpler alternative to the Nginx + PHP-FPM stack.
 
-## Features
+[![GitHub release](https://img.shields.io/github/v/release/chandan1106/gophpserver)](https://github.com/chandan1106/gophpserver/releases)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+## 📖 Documentation
+
+Visit our [documentation site](https://chandan1106.github.io/gophpserver/) for complete installation and usage instructions.
+
+## ✨ Features
 
 - **Standalone Operation**: No external dependencies required (except PHP)
 - **High Performance**: Uses Go's efficient HTTP server implementation
@@ -11,19 +18,34 @@ A lightweight, high-performance web server written in Go that can serve both sta
 - **Static File Serving**: Efficiently serves static content
 - **Simple Configuration**: Easy to configure via command-line flags
 
-## Quick Start
+## 🚀 Quick Start
 
 ### Installation
 
 #### Option 1: Download Pre-built Binary
 
-Download the binary for your platform from the [releases page](https://github.com/yourusername/gophpserver/releases).
+Download the binary for your platform from the [releases page](https://github.com/chandan1106/gophpserver/releases).
+
+```bash
+# Linux
+wget https://github.com/chandan1106/gophpserver/releases/download/v1.0.0/gophpserver-linux-amd64.tar.gz
+tar -xzf gophpserver-linux-amd64.tar.gz
+chmod +x gophpserver
+
+# macOS
+wget https://github.com/chandan1106/gophpserver/releases/download/v1.0.0/gophpserver-darwin-amd64.tar.gz
+tar -xzf gophpserver-darwin-amd64.tar.gz
+chmod +x gophpserver
+
+# Windows
+# Download the zip file and extract it
+```
 
 #### Option 2: Build from Source
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/gophpserver.git
+git clone https://github.com/chandan1106/gophpserver.git
 cd gophpserver
 
 # Build the server
@@ -33,86 +55,55 @@ make build
 ### Running the Server
 
 ```bash
-# Using the run script
-./run.sh
+# Start with default settings
+./gophpserver
 
-# Or directly
-./build/gophpserver
+# Specify a different port and document root
+./gophpserver -port 8000 -docroot /path/to/your/website
 ```
 
-### Creating Your First PHP Website
+## 🔧 Configuration Options
 
-1. Create a directory for your website files:
-   ```bash
-   mkdir -p public
-   ```
+| Flag | Description | Default |
+|------|-------------|---------|
+| `-host` | Host to listen on | "0.0.0.0" |
+| `-port` | Port to listen on | 8080 |
+| `-docroot` | Document root directory | "./public" |
+| `-php` | Path to PHP binary | auto-detect |
+| `-log` | Log file path | stdout |
 
-2. Create a simple PHP file:
-   ```bash
-   echo '<?php echo "<h1>Hello from GoPHPServer!</h1>"; ?>' > public/index.php
-   ```
-
-3. Start the server:
-   ```bash
-   ./run.sh
-   ```
-
-4. Open your browser and navigate to:
-   ```
-   http://localhost:8080/
-   ```
-
-## Documentation
-
-- [Quick Start Guide](docs/quick-start.md) - Get up and running in minutes
-- [User Guide](docs/user-guide.md) - Detailed usage instructions
-- [FAQ](docs/faq.md) - Frequently asked questions
-- [Examples](examples) - Example applications
-
-## Command-line Options
-
-- `-host`: Host to listen on (default: "0.0.0.0")
-- `-port`: Port to listen on (default: 8080)
-- `-docroot`: Document root directory (default: "./public")
-- `-php`: Path to PHP binary (default: auto-detect)
-- `-log`: Log file path (default: stdout)
-
-## Docker Support
-
-### Using Docker Compose
+## 🐳 Docker Support
 
 ```bash
-# Start the server
+# Start with Docker Compose
 docker-compose up -d
 
-# Stop the server
-docker-compose down
-```
-
-### Using Docker Directly
-
-```bash
-# Build the Docker image
+# Or build and run manually
 docker build -t gophpserver .
-
-# Run the container
-docker run -d -p 8080:8080 -v $(pwd)/public:/app/public --name gophpserver gophpserver
+docker run -d -p 8080:8080 -v $(pwd)/public:/app/public gophpserver
 ```
 
-## Development
+## 📚 Documentation
 
-### Building for Multiple Platforms
+- [Quick Start Guide](https://chandan1106.github.io/gophpserver/docs/quick-start.html)
+- [User Guide](https://chandan1106.github.io/gophpserver/docs/user-guide.html)
+- [Technical Documentation](https://chandan1106.github.io/gophpserver/docs/technical.html)
+- [FAQ](https://chandan1106.github.io/gophpserver/docs/faq.html)
 
-```bash
-make build-all
-```
+## 🤝 Contributing
 
-### Creating Distribution Packages
+Contributions are welcome! Please feel free to submit a Pull Request.
 
-```bash
-make dist
-```
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-## License
+## 📄 License
 
-MIT
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 📞 Support
+
+If you encounter any issues or have questions, please [open an issue](https://github.com/chandan1106/gophpserver/issues) on GitHub.
